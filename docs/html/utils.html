@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>utils module &mdash; NDNA Documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="space module" href="space.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ndna
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ndna</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="space.html">space module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ndna</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">ndna</a> &raquo;</li>
+        
+      <li>utils module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-utils">
+<span id="utils-module"></span><h1>utils module<a class="headerlink" href="#module-utils" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="utils.loadjson">
+<code class="descclassname">utils.</code><code class="descname">loadjson</code><span class="sig-paren">(</span><em>fname</em>, <em>ordered=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadjson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadjson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.json</span></code> filename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the contents as a dict / list object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.savejson">
+<code class="descclassname">utils.</code><code class="descname">savejson</code><span class="sig-paren">(</span><em>fname</em>, <em>data</em>, <em>append=False</em>, <em>warn=True</em>, <em>indent=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savejson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savejson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a dict / list object to a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.json</span></code> filename</li>
+<li><strong>data</strong> – dict / list object</li>
+<li><strong>append</strong> – append to the file <strong>fname</strong></li>
+<li><strong>warn</strong> – print a warning if overwriting keys during append</li>
+<li><strong>indent</strong> – spaces of indentation or <code class="docutils literal notranslate"><span class="pre">None</span></code> for no newlines at all</li>
+<li><strong>**kwargs</strong> – keyword arguments to pass to <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.loadtxt">
+<code class="descclassname">utils.</code><code class="descname">loadtxt</code><span class="sig-paren">(</span><em>fname</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadtxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.txt</span></code> filename</li>
+<li><strong>dtype</strong> – a datatype to cast the result</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the file contents as dtype</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.savetxt">
+<code class="descclassname">utils.</code><code class="descname">savetxt</code><span class="sig-paren">(</span><em>fname</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savetxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savetxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a value to file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.txt</span></code> filename</li>
+<li><strong>value</strong> – some value to write to file as a string</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.loadcsv">
+<code class="descclassname">utils.</code><code class="descname">loadcsv</code><span class="sig-paren">(</span><em>fname</em>, <em>asdict=True</em>, <em>row=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadcsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadcsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file into a dict / list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.csv</span></code> filename</li>
+<li><strong>asdict</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> read a list of dictionaries elif <code class="docutils literal notranslate"><span class="pre">False</span></code> read a list of rows</li>
+<li><strong>row</strong> – return only the specified row (zero-based index)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.savecsv">
+<code class="descclassname">utils.</code><code class="descname">savecsv</code><span class="sig-paren">(</span><em>fname</em>, <em>data</em>, <em>append=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savecsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savecsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a dict / list into a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file.</p>
+<p>If <strong>data</strong> is a dictionary, and the file is new, a header row is added to the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file.
+If <strong>data</strong> is a list, no header row is added.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.csv</span></code> filename</li>
+<li><strong>data</strong> – dict / list object</li>
+<li><strong>append</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> append <strong>data</strong> to the existing file contents</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.makedir">
+<code class="descclassname">utils.</code><code class="descname">makedir</code><span class="sig-paren">(</span><em>directory</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#makedir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.makedir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just make the damned directory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory</strong> – the directory to make if it does not already exist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.remove">
+<code class="descclassname">utils.</code><code class="descname">remove</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just remove the damned file or directory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> – a file or directory to remove</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.walkfiles">
+<code class="descclassname">utils.</code><code class="descname">walkfiles</code><span class="sig-paren">(</span><em>paths</em>, <em>exts=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#walkfiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.walkfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">os.walk()</span></code> for multiple directories and files yielding only files</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>paths</strong> – file path, directory path, or list of any combination of those</li>
+<li><strong>exts</strong> – file extension to filter results</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last">full paths to all (matching) files in the specified directories and files</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.unique">
+<code class="descclassname">utils.</code><code class="descname">unique</code><span class="sig-paren">(</span><em>iterobj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#unique"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.unique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the unique elements of a list of objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iterobj</strong> – an iterable object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list containing only the unique elements from <strong>objlist</strong></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.dictmerge">
+<code class="descclassname">utils.</code><code class="descname">dictmerge</code><span class="sig-paren">(</span><em>*dicts</em>, <em>ordered=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#dictmerge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.dictmerge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges the provided dictionaries</p>
+<p>If a key appears in more than one dictionary in the list,
+the value from the last appearance is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dicts</strong> – multiple dictionary objects</li>
+<li><strong>ordered</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> return an <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> else a classic dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A single (possibly ordered) dictionary containing all key-value pairs from the input dicts</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.flatten">
+<code class="descclassname">utils.</code><code class="descname">flatten</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that x is a single list containing no nested lists.</p>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">np.ndarray.flatten</span></code>, except for lists which may contain heterogeneous data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> – a single value or list of lists or list of list of lists …</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list containing all elements of x in the order they appear</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="space.html" class="btn btn-neutral" title="space module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+      Last updated on 2019 Jul 19.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

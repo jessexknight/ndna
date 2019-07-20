@@ -1,0 +1,17 @@
+/* .wy-nav-content-wrap {
+  background-color: #343131;
+  color: #fff;
+} */
+dt {
+  width: 100%;
+  font-family: Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
+}
+.viewcode-link {
+  float: right;
+}
+.logo {
+  max-height: 100px;
+}
+.rst-content a:visited {
+  color: #2980B9;
+}
