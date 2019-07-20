@@ -1,5 +1,2 @@
 numpy
-csv
-itertools
-collections
 simplejson
