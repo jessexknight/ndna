@@ -11,6 +11,6 @@ tests:
 
 .PHONY: docs
 docs:
-	rm -rf docs/html*
+	# rm -rf docs/html*
 	sphinx-apidoc -f -e -o docs/src ndna
 	sphinx-build -b html docs/src docs/html
