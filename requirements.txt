@@ -1,0 +1,6 @@
+ndna
+numpy
+csv
+itertools
+collections
+simplejson

@@ -1,0 +1,17 @@
+{
+  "activity": {
+    "name":"activity",
+    "key": "i",
+    "values": ["high","medium","low"]
+  },
+  "sex": {
+    "name":"sex",
+    "key": "k",
+    "values": ["male","female"]
+  },
+  "age": {
+    "name":"age",
+    "key": "j",
+    "values": [10,20,30,40,50,60,70]
+  }
+}
