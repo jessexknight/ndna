@@ -9,7 +9,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     # 'sphinx.ext.mathjax',
-    # 'sphinx.ext.ifconfig',
+    'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
 ]
@@ -39,7 +39,7 @@ todo_include_todos = False
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
-html_theme_path = []
+html_theme_path = ['themes',]
 html_theme_options = {}
 html_title = 'NDNA Documentation'
 html_short_title = 'NDNA'
