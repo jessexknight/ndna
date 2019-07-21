@@ -9,3 +9,5 @@ script:
   - pytest --cov=ndna/ tests/
 after_success:
   - codecov
+notifications:
+  email: false
