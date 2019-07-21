@@ -151,7 +151,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Utility functions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span> <span class="k">as</span> <span class="n">odict</span>
 <span class="kn">import</span> <span class="nn">simplejson</span> <span class="k">as</span> <span class="nn">json</span>
@@ -330,12 +333,12 @@
   <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">flatten</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
       <span class="k">if</span> <span class="n">checkext</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="k">yield</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">path</span>
     <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
       <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="n">fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">checkext</span><span class="p">(</span><span class="n">fpath</span><span class="p">):</span>
-          <span class="k">yield</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+          <span class="k">yield</span> <span class="n">fpath</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot find path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
 
@@ -399,7 +402,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 
-      Last updated on 2019 Jul 20.
+      Last updated on 2019 Jul 21.
 
     </p>
   </div>
