@@ -5,7 +5,7 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - pytest --pylint ndna/
+  - bash ci/pylint/get-badge.sh
   - pytest --cov=ndna/ tests/
 after_success:
   - codecov

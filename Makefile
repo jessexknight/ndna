@@ -7,6 +7,7 @@ help:
 
 .PHONY: tests
 tests:
+	bash ci/pylint/get-badge.sh
 	pytest --cov=ndna/ tests/
 
 .PHONY: docs
