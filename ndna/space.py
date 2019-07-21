@@ -1,5 +1,7 @@
-import numpy as np
+r"""Core classes of the NDNA package: Dimension, Space, and Array
+"""
 from itertools import product
+import numpy as np
 
 class Dimension():
   def __init__(self,name,key,values):
@@ -43,11 +45,11 @@ class Space():
   def dim(self,key):
     return self.dims[self.index(key)]
 
-  def keyfilter(self,iter,keys):
-    return [item for item,key in zip(iter,self.keys) if key in keys]
+  def keyfilter(self,objs,keys):
+    return [item for item,key in zip(objs,self.keys) if key in keys]
 
-  def keysub(self,iter,sub,keys):
-    return [item if key in keys else sub for item,key in zip(iter,self.keys)]
+  def keysub(self,objs,sub,keys):
+    return [item if key in keys else sub for item,key in zip(objs,self.keys)]
 
   def iter(self,keys=None):
     sdims = self.dims if keys is None else self.keyfilter(self.dims,keys)

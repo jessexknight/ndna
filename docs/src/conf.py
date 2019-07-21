@@ -36,6 +36,8 @@ pygments_style = 'sphinx'
 keep_warnings = False
 todo_include_todos = False
 
+napoleon_use_rtype = False
+
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'

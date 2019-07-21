@@ -1,31 +1,34 @@
+r"""Utility functions
+"""
+
 import os
 import csv
 from collections import OrderedDict as odict
 import simplejson as json
 
-def loadjson(fname,ordered=True):
-  r"""Load a ``.json`` file.
+def loadjson(fname, ordered=True):
+  r"""Load a JSON file.
 
   Args:
-    fname: ``.json`` filename
+    fname (str): the file to load
+    ordered (bool): return dictionaries as: ``True`` = OrderedDict; ``False`` = dict
 
   Returns:
-    the contents as a dict / list object
+    (dict,list): the contents as a dict / list object
   """
   oargs = {'object_pairs_hook': odict} if ordered else {}
   with open(fname,'r') as f:
     return json.load(f,**oargs)
 
-def savejson(fname,data,append=False,warn=True,indent=None,**kwargs):
-  r"""Save a dict / list object to a ``.json`` file.
+def savejson(fname,data,append=False,indent=None,**kwargs):
+  r"""Save a dict / list object to a JSON file.
 
   Args:
-    fname: ``.json`` filename
-    data: dict / list object
-    append: append to the file **fname**
-    warn: print a warning if overwriting keys during append
-    indent: spaces of indentation or ``None`` for no newlines at all
-    **kwargs: keyword arguments to pass to ``json.dump()``
+    fname (str): the file to write
+    data (dict,list): a the data to write to file
+    append (bool): if ``True``: append to file; if ``False``: overwrite it
+    indent (None,int): number of spaces of indentation or ``None`` for no newlines at all
+    **kwargs: additional keyword arguments to pass to ``json.dump``
   """
   if (not append) or (not os.path.exists(fname)):
     # no append
@@ -42,13 +45,6 @@ def savejson(fname,data,append=False,warn=True,indent=None,**kwargs):
     elif isinstance(fdata,dict):
       if isinstance(data,dict):
         # dict to dict: update
-        if warn:
-          # warn about overwriting keys
-          overwrite = [key for key in data if key in fdata]
-          if overwrite:
-            print('Warning: overwriting keys: {} in {}'.format(
-              overwrite,fname
-            ))
         fdata.update(data)
       else:
         # obj to dict: error
@@ -65,37 +61,39 @@ def savejson(fname,data,append=False,warn=True,indent=None,**kwargs):
     json.dump(fdata,f,ignore_nan=True,indent=indent,**kwargs)
 
 def loadtxt(fname,dtype=None):
-  r"""Load a ``.txt`` file.
+  r"""Load a text file.
 
   Args:
-    fname: ``.txt`` filename
-    dtype: a datatype to cast the result
+    fname (str): the file to load
+    dtype (type): a datatype to cast the result; default: ``float``
 
   Returns:
-    the file contents as dtype
+    (dtype): the file contents
   """
   dtype = dtype if dtype is not None else float
   with open(fname,'r') as f:
     return dtype(f.read())
 
-def savetxt(fname,value):
-  r"""Save a value to file.
+def savetxt(fname,obj):
+  r"""Save an object to file as a string.
 
   Args:
-    fname: ``.txt`` filename
-    value: some value to write to file as a string
+    fname (str): the file to write
+    obj (object): an object to write to file as a string
   """
   makedir(os.path.split(fname)[0])
   with open(fname,'w') as f:
-    f.write(str(value))
+    f.write(str(obj))
 
-def loadcsv(fname,asdict=True,row=None):
-  r"""Read a ``.csv`` file into a dict / list.
+def loadcsv(fname,asdict=True):
+  r"""Read a CSV file into a dict / list.
 
   Args:
-    fname: ``.csv`` filename
-    asdict: if ``True`` read a list of dictionaries elif ``False`` read a list of rows
-    row: return only the specified row (zero-based index)
+    fname (str): the file to load
+    asdict (bool): load the file as: ``True`` = a list of dictionaries; ``False`` = a list of lists
+
+  Returns:
+    (list): the file contents
   """
   opts = {
     'delimiter': ',',
@@ -106,23 +104,18 @@ def loadcsv(fname,asdict=True,row=None):
       reader = csv.DictReader(f,**opts)
     else:
       reader = csv.reader(f,**opts)
-    if row is not None:
-      for _ in range(row):
-        next(reader)
-      return next(reader)
-    else:
-      return [row for row in reader]
+    return [row for row in reader]
 
 def savecsv(fname,data,append=True):
-  r"""Save a dict / list into a ``.csv`` file.
+  r"""Save a dict / list into a CSV file.
 
-  If **data** is a dictionary, and the file is new, a header row is added to the ``.csv`` file.
+  If **data** is a dictionary, and the file is new, a header row is added to the CSV file.
   If **data** is a list, no header row is added.
 
   Args:
-    fname: ``.csv`` filename
-    data: dict / list object
-    append: if ``True`` append **data** to the existing file contents
+    fname (str): the file to write
+    data (dict,list): an object to write to file
+    append (bool): if ``True``: append to file; if ``False``: overwrite it
   """
   opts = {
     'delimiter': ',',
@@ -148,10 +141,10 @@ def savecsv(fname,data,append=True):
   f.close()
 
 def makedir(directory):
-  r"""Just make the damned directory
+  r"""Just make the damned directory.
 
   Args:
-    directory: the directory to make if it does not already exist
+    directory (str): path to a directory to create
   """
   try:
     os.makedirs(directory,exist_ok=True)
@@ -159,10 +152,10 @@ def makedir(directory):
     pass
 
 def remove(fname):
-  r"""Just remove the damned file or directory
+  r"""Just remove the damned file or directory.
 
   Args:
-    fname: a file or directory to remove
+    fname (str): a file or directory to remove
   """
   try:
     os.remove(fname)
@@ -173,53 +166,52 @@ def remove(fname):
       pass
 
 def walkfiles(paths,exts=None):
-  r"""Shorthand for ``os.walk()`` for multiple directories and files yielding only files
+  r"""Walk one or more directories or files and possibly filter results by file extension.
 
   Args:
-    paths: file path, directory path, or list of any combination of those
-    exts: file extension to filter results
+    paths (str,list): file path, directory path, or list of any combination of those
+    exts (str): extension type with which to filter files
 
   Yields:
-    full paths to all (matching) files in the specified directories and files
+    (str): full paths to all (matching) files in the specified directories or files
   """
   def checkext(path):
     return exts is None or os.path.splitext(path)[1] in flatten(exts)
   for path in flatten(paths):
     if os.path.isfile(path):
       if checkext(path):
-        yield(path)
+        yield path
     elif os.path.isdir(path):
       for root,_,f in os.walk(path):
         fpath = os.path.join(root,f)
         if checkext(fpath):
-          yield(fpath)
+          yield fpath
     else:
       raise ValueError('Cannot find path: {}'.format(path))
 
 def unique(iterobj):
-  r"""Returns the unique elements of a list of objects
+  r"""Return the unique elements of a list of objects.
 
   Args:
-    iterobj: an iterable object
+    iterobj (Iterable): an iterable object
 
   Returns:
-    A list containing only the unique elements from **objlist**
+    (list): a list containing only the unique elements from **iterobj**
   """
   u = set()
   return [obj for obj in iterobj if not (obj in u or u.add(obj))]
 
 def dictmerge(*dicts,ordered=False):
-  r"""Merges the provided dictionaries
+  r"""Merge the provided dictionaries.
 
-  If a key appears in more than one dictionary in the list,
-  the value from the last appearance is used.
+  If a key appears in more than one dictionary, the value from the last appearance is used.
 
   Args:
-    dicts: multiple dictionary objects
-    ordered: if ``True`` return an ``OrderedDict`` else a classic dictionary
+    *dicts (Iterable[dict]): multiple dictionary objects
+    ordered (bool): return the dictionary as: ``True`` = OrderedDict; ``False`` = dict
 
   Returns:
-    A single (possibly ordered) dictionary containing all key-value pairs from the input dicts
+    (dict): A single (ordered) dictionary containing all key-value pairs from the input dictionaries
   """
   if not ordered:
     return {k:d[k] for d in dicts for k in d}
@@ -227,15 +219,15 @@ def dictmerge(*dicts,ordered=False):
     return odict([(k,d[k]) for d in dicts for k in d])
 
 def flatten(obj):
-  r"""Ensures that x is a single list containing no nested lists.
+  r"""Ensures that **obj** is a single list containing no nested lists.
 
   Similar to ``np.ndarray.flatten``, except for lists which may contain heterogeneous data.
 
   Args:
-    x: a single value or list of lists or list of list of lists ...
+    obj (object): a single object or list of lists or list of list of lists ...
 
   Returns:
-    a list containing all elements of x in the order they appear
+    (list): a list containing all (nested) elements of **obj** in the order they appear
   """
   out = []
   if hasattr(obj,'__iter__') and not isinstance(obj,str):

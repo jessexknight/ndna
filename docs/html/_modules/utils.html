@@ -156,29 +156,29 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span> <span class="k">as</span> <span class="n">odict</span>
 <span class="kn">import</span> <span class="nn">simplejson</span> <span class="k">as</span> <span class="nn">json</span>
 
-<div class="viewcode-block" id="loadjson"><a class="viewcode-back" href="../utils.html#utils.loadjson">[docs]</a><span class="k">def</span> <span class="nf">loadjson</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Load a ``.json`` file.</span>
+<div class="viewcode-block" id="loadjson"><a class="viewcode-back" href="../utils.html#utils.loadjson">[docs]</a><span class="k">def</span> <span class="nf">loadjson</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Load a JSON file.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.json`` filename</span>
+<span class="sd">    fname (str): the file to load</span>
+<span class="sd">    ordered (bool): return dictionaries as: ``True`` = OrderedDict; ``False`` = dict</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">    the contents as a dict / list object</span>
+<span class="sd">    (dict,list): the contents as a dict / list object</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">oargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;object_pairs_hook&#39;</span><span class="p">:</span> <span class="n">odict</span><span class="p">}</span> <span class="k">if</span> <span class="n">ordered</span> <span class="k">else</span> <span class="p">{}</span>
   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">**</span><span class="n">oargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="savejson"><a class="viewcode-back" href="../utils.html#utils.savejson">[docs]</a><span class="k">def</span> <span class="nf">savejson</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save a dict / list object to a ``.json`` file.</span>
+<div class="viewcode-block" id="savejson"><a class="viewcode-back" href="../utils.html#utils.savejson">[docs]</a><span class="k">def</span> <span class="nf">savejson</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save a dict / list object to a JSON file.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.json`` filename</span>
-<span class="sd">    data: dict / list object</span>
-<span class="sd">    append: append to the file **fname**</span>
-<span class="sd">    warn: print a warning if overwriting keys during append</span>
-<span class="sd">    indent: spaces of indentation or ``None`` for no newlines at all</span>
-<span class="sd">    **kwargs: keyword arguments to pass to ``json.dump()``</span>
+<span class="sd">    fname (str): the file to write</span>
+<span class="sd">    data (dict,list): a the data to write to file</span>
+<span class="sd">    append (bool): if ``True``: append to file; if ``False``: overwrite it</span>
+<span class="sd">    indent (None,int): number of spaces of indentation or ``None`` for no newlines at all</span>
+<span class="sd">    **kwargs: additional keyword arguments to pass to ``json.dump``</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">append</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">)):</span>
     <span class="c1"># no append</span>
@@ -195,13 +195,6 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
       <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
         <span class="c1"># dict to dict: update</span>
-        <span class="k">if</span> <span class="n">warn</span><span class="p">:</span>
-          <span class="c1"># warn about overwriting keys</span>
-          <span class="n">overwrite</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">fdata</span><span class="p">]</span>
-          <span class="k">if</span> <span class="n">overwrite</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: overwriting keys: </span><span class="si">{}</span><span class="s1"> in </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-              <span class="n">overwrite</span><span class="p">,</span><span class="n">fname</span>
-            <span class="p">))</span>
         <span class="n">fdata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
       <span class="k">else</span><span class="p">:</span>
         <span class="c1"># obj to dict: error</span>
@@ -218,37 +211,39 @@
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">ignore_nan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="loadtxt"><a class="viewcode-back" href="../utils.html#utils.loadtxt">[docs]</a><span class="k">def</span> <span class="nf">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Load a ``.txt`` file.</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Load a text file.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.txt`` filename</span>
-<span class="sd">    dtype: a datatype to cast the result</span>
+<span class="sd">    fname (str): the file to load</span>
+<span class="sd">    dtype (type): a datatype to cast the result; default: ``float``</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">    the file contents as dtype</span>
+<span class="sd">    (dtype): the file contents</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span> <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span>
   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">dtype</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="savetxt"><a class="viewcode-back" href="../utils.html#utils.savetxt">[docs]</a><span class="k">def</span> <span class="nf">savetxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save a value to file.</span>
+<div class="viewcode-block" id="savetxt"><a class="viewcode-back" href="../utils.html#utils.savetxt">[docs]</a><span class="k">def</span> <span class="nf">savetxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">obj</span><span class="p">):</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save an object to file as a string.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.txt`` filename</span>
-<span class="sd">    value: some value to write to file as a string</span>
+<span class="sd">    fname (str): the file to write</span>
+<span class="sd">    obj (object): an object to write to file as a string</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">makedir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">fname</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="loadcsv"><a class="viewcode-back" href="../utils.html#utils.loadcsv">[docs]</a><span class="k">def</span> <span class="nf">loadcsv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">asdict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">row</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read a ``.csv`` file into a dict / list.</span>
+<div class="viewcode-block" id="loadcsv"><a class="viewcode-back" href="../utils.html#utils.loadcsv">[docs]</a><span class="k">def</span> <span class="nf">loadcsv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">asdict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Read a CSV file into a dict / list.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.csv`` filename</span>
-<span class="sd">    asdict: if ``True`` read a list of dictionaries elif ``False`` read a list of rows</span>
-<span class="sd">    row: return only the specified row (zero-based index)</span>
+<span class="sd">    fname (str): the file to load</span>
+<span class="sd">    asdict (bool): load the file as: ``True`` = a list of dictionaries; ``False`` = a list of lists</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    (list): the file contents</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;delimiter&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span>
@@ -259,23 +254,18 @@
       <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">**</span><span class="n">opts</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">**</span><span class="n">opts</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-        <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
-      <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="savecsv"><a class="viewcode-back" href="../utils.html#utils.savecsv">[docs]</a><span class="k">def</span> <span class="nf">savecsv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save a dict / list into a ``.csv`` file.</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Save a dict / list into a CSV file.</span>
 
-<span class="sd">  If **data** is a dictionary, and the file is new, a header row is added to the ``.csv`` file.</span>
+<span class="sd">  If **data** is a dictionary, and the file is new, a header row is added to the CSV file.</span>
 <span class="sd">  If **data** is a list, no header row is added.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: ``.csv`` filename</span>
-<span class="sd">    data: dict / list object</span>
-<span class="sd">    append: if ``True`` append **data** to the existing file contents</span>
+<span class="sd">    fname (str): the file to write</span>
+<span class="sd">    data (dict,list): an object to write to file</span>
+<span class="sd">    append (bool): if ``True``: append to file; if ``False``: overwrite it</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;delimiter&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span>
@@ -301,10 +291,10 @@
   <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="makedir"><a class="viewcode-back" href="../utils.html#utils.makedir">[docs]</a><span class="k">def</span> <span class="nf">makedir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Just make the damned directory</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Just make the damned directory.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    directory: the directory to make if it does not already exist</span>
+<span class="sd">    directory (str): path to a directory to create</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">try</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -312,10 +302,10 @@
     <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="remove"><a class="viewcode-back" href="../utils.html#utils.remove">[docs]</a><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Just remove the damned file or directory</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Just remove the damned file or directory.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    fname: a file or directory to remove</span>
+<span class="sd">    fname (str): a file or directory to remove</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">try</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
@@ -326,14 +316,14 @@
       <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="walkfiles"><a class="viewcode-back" href="../utils.html#utils.walkfiles">[docs]</a><span class="k">def</span> <span class="nf">walkfiles</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span><span class="n">exts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Shorthand for ``os.walk()`` for multiple directories and files yielding only files</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Walk one or more directories or files and possibly filter results by file extension.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    paths: file path, directory path, or list of any combination of those</span>
-<span class="sd">    exts: file extension to filter results</span>
+<span class="sd">    paths (str,list): file path, directory path, or list of any combination of those</span>
+<span class="sd">    exts (str): extension type with which to filter files</span>
 
 <span class="sd">  Yields:</span>
-<span class="sd">    full paths to all (matching) files in the specified directories and files</span>
+<span class="sd">    (str): full paths to all (matching) files in the specified directories or files</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">def</span> <span class="nf">checkext</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">exts</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">flatten</span><span class="p">(</span><span class="n">exts</span><span class="p">)</span>
@@ -350,29 +340,28 @@
       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot find path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="unique"><a class="viewcode-back" href="../utils.html#utils.unique">[docs]</a><span class="k">def</span> <span class="nf">unique</span><span class="p">(</span><span class="n">iterobj</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the unique elements of a list of objects</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return the unique elements of a list of objects.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    iterobj: an iterable object</span>
+<span class="sd">    iterobj (Iterable): an iterable object</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">    A list containing only the unique elements from **objlist**</span>
+<span class="sd">    (list): a list containing only the unique elements from **iterobj**</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">u</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
   <span class="k">return</span> <span class="p">[</span><span class="n">obj</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">iterobj</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">obj</span> <span class="ow">in</span> <span class="n">u</span> <span class="ow">or</span> <span class="n">u</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">))]</span></div>
 
 <div class="viewcode-block" id="dictmerge"><a class="viewcode-back" href="../utils.html#utils.dictmerge">[docs]</a><span class="k">def</span> <span class="nf">dictmerge</span><span class="p">(</span><span class="o">*</span><span class="n">dicts</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Merges the provided dictionaries</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Merge the provided dictionaries.</span>
 
-<span class="sd">  If a key appears in more than one dictionary in the list,</span>
-<span class="sd">  the value from the last appearance is used.</span>
+<span class="sd">  If a key appears in more than one dictionary, the value from the last appearance is used.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    dicts: multiple dictionary objects</span>
-<span class="sd">    ordered: if ``True`` return an ``OrderedDict`` else a classic dictionary</span>
+<span class="sd">    *dicts (Iterable[dict]): multiple dictionary objects</span>
+<span class="sd">    ordered (bool): return the dictionary as: ``True`` = OrderedDict; ``False`` = dict</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">    A single (possibly ordered) dictionary containing all key-value pairs from the input dicts</span>
+<span class="sd">    (dict): A single (ordered) dictionary containing all key-value pairs from the input dictionaries</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">if</span> <span class="ow">not</span> <span class="n">ordered</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dicts</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">}</span>
@@ -380,15 +369,15 @@
     <span class="k">return</span> <span class="n">odict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dicts</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../utils.html#utils.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Ensures that x is a single list containing no nested lists.</span>
+  <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Ensures that **obj** is a single list containing no nested lists.</span>
 
 <span class="sd">  Similar to ``np.ndarray.flatten``, except for lists which may contain heterogeneous data.</span>
 
 <span class="sd">  Args:</span>
-<span class="sd">    x: a single value or list of lists or list of list of lists ...</span>
+<span class="sd">    obj (object): a single object or list of lists or list of list of lists ...</span>
 
 <span class="sd">  Returns:</span>
-<span class="sd">    a list containing all elements of x in the order they appear</span>
+<span class="sd">    (list): a list containing all (nested) elements of **obj** in the order they appear</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s1">&#39;__iter__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span>
