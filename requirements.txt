@@ -2,3 +2,4 @@ numpy
 simplejson
 codecov
 pytest-cov
+pytest-pylint

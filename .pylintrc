@@ -1,0 +1,19 @@
+[FORMAT]
+# 2-space indents
+indent-string='  '
+
+# parent indents
+indent-after-paren=2
+
+# docstrings
+docstring-min-length=256
+
+disable =
+  W0511, # TODO
+  W0702, # [readability] no exception type specified
+  C0326, # [readability] whitespace
+  C0103, # [small names] snake_space naming style
+  R0903, # [Dimension]   too few public methods
+  R1705, # [readability] unnecessary else after return
+  W0642, # [np subclass] assignment to cls in method
+  W0201, # [np subclass] attribute defined outside __init__
