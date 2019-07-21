@@ -7,7 +7,7 @@ help:
 
 .PHONY: tests
 tests:
-	pytest tests
+	pytest --cov=ndna/ tests/
 
 .PHONY: docs
 docs:
