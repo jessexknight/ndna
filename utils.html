@@ -162,14 +162,19 @@
 <dl class="function">
 <dt id="utils.loadjson">
 <code class="descclassname">utils.</code><code class="descname">loadjson</code><span class="sig-paren">(</span><em>fname</em>, <em>ordered=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadjson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadjson" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file.</p>
+<dd><p>Load a JSON file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.json</span></code> filename</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fname</strong> (<em>str</em>) – the file to load</li>
+<li><strong>ordered</strong> (<em>bool</em>) – return dictionaries as: <code class="docutils literal notranslate"><span class="pre">True</span></code> = OrderedDict; <code class="docutils literal notranslate"><span class="pre">False</span></code> = dict</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the contents as a dict / list object</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><em>(dict,list)</em> – the contents as a dict / list object</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -177,19 +182,18 @@
 
 <dl class="function">
 <dt id="utils.savejson">
-<code class="descclassname">utils.</code><code class="descname">savejson</code><span class="sig-paren">(</span><em>fname</em>, <em>data</em>, <em>append=False</em>, <em>warn=True</em>, <em>indent=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savejson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savejson" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a dict / list object to a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file.</p>
+<code class="descclassname">utils.</code><code class="descname">savejson</code><span class="sig-paren">(</span><em>fname</em>, <em>data</em>, <em>append=False</em>, <em>indent=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savejson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savejson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a dict / list object to a JSON file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.json</span></code> filename</li>
-<li><strong>data</strong> – dict / list object</li>
-<li><strong>append</strong> – append to the file <strong>fname</strong></li>
-<li><strong>warn</strong> – print a warning if overwriting keys during append</li>
-<li><strong>indent</strong> – spaces of indentation or <code class="docutils literal notranslate"><span class="pre">None</span></code> for no newlines at all</li>
-<li><strong>**kwargs</strong> – keyword arguments to pass to <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code></li>
+<li><strong>fname</strong> (<em>str</em>) – the file to write</li>
+<li><strong>data</strong> (<em>dict</em><em>,</em><em>list</em>) – a the data to write to file</li>
+<li><strong>append</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>: append to file; if <code class="docutils literal notranslate"><span class="pre">False</span></code>: overwrite it</li>
+<li><strong>indent</strong> (<em>None</em><em>,</em><em>int</em>) – number of spaces of indentation or <code class="docutils literal notranslate"><span class="pre">None</span></code> for no newlines at all</li>
+<li><strong>**kwargs</strong> – additional keyword arguments to pass to <code class="docutils literal notranslate"><span class="pre">json.dump</span></code></li>
 </ul>
 </td>
 </tr>
@@ -200,18 +204,18 @@
 <dl class="function">
 <dt id="utils.loadtxt">
 <code class="descclassname">utils.</code><code class="descname">loadtxt</code><span class="sig-paren">(</span><em>fname</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadtxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadtxt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file.</p>
+<dd><p>Load a text file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.txt</span></code> filename</li>
-<li><strong>dtype</strong> – a datatype to cast the result</li>
+<li><strong>fname</strong> (<em>str</em>) – the file to load</li>
+<li><strong>dtype</strong> (<em>type</em>) – a datatype to cast the result; default: <code class="docutils literal notranslate"><span class="pre">float</span></code></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the file contents as dtype</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><em>(dtype)</em> – the file contents</p>
 </td>
 </tr>
 </tbody>
@@ -220,15 +224,15 @@
 
 <dl class="function">
 <dt id="utils.savetxt">
-<code class="descclassname">utils.</code><code class="descname">savetxt</code><span class="sig-paren">(</span><em>fname</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savetxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savetxt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a value to file.</p>
+<code class="descclassname">utils.</code><code class="descname">savetxt</code><span class="sig-paren">(</span><em>fname</em>, <em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savetxt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savetxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save an object to file as a string.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.txt</span></code> filename</li>
-<li><strong>value</strong> – some value to write to file as a string</li>
+<li><strong>fname</strong> (<em>str</em>) – the file to write</li>
+<li><strong>obj</strong> (<em>object</em>) – an object to write to file as a string</li>
 </ul>
 </td>
 </tr>
@@ -238,17 +242,19 @@
 
 <dl class="function">
 <dt id="utils.loadcsv">
-<code class="descclassname">utils.</code><code class="descname">loadcsv</code><span class="sig-paren">(</span><em>fname</em>, <em>asdict=True</em>, <em>row=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadcsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadcsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file into a dict / list.</p>
+<code class="descclassname">utils.</code><code class="descname">loadcsv</code><span class="sig-paren">(</span><em>fname</em>, <em>asdict=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#loadcsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.loadcsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a CSV file into a dict / list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.csv</span></code> filename</li>
-<li><strong>asdict</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> read a list of dictionaries elif <code class="docutils literal notranslate"><span class="pre">False</span></code> read a list of rows</li>
-<li><strong>row</strong> – return only the specified row (zero-based index)</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fname</strong> (<em>str</em>) – the file to load</li>
+<li><strong>asdict</strong> (<em>bool</em>) – load the file as: <code class="docutils literal notranslate"><span class="pre">True</span></code> = a list of dictionaries; <code class="docutils literal notranslate"><span class="pre">False</span></code> = a list of lists</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><em>(list)</em> – the file contents</p>
 </td>
 </tr>
 </tbody>
@@ -258,17 +264,17 @@
 <dl class="function">
 <dt id="utils.savecsv">
 <code class="descclassname">utils.</code><code class="descname">savecsv</code><span class="sig-paren">(</span><em>fname</em>, <em>data</em>, <em>append=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#savecsv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.savecsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a dict / list into a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file.</p>
-<p>If <strong>data</strong> is a dictionary, and the file is new, a header row is added to the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file.
+<dd><p>Save a dict / list into a CSV file.</p>
+<p>If <strong>data</strong> is a dictionary, and the file is new, a header row is added to the CSV file.
 If <strong>data</strong> is a list, no header row is added.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fname</strong> – <code class="docutils literal notranslate"><span class="pre">.csv</span></code> filename</li>
-<li><strong>data</strong> – dict / list object</li>
-<li><strong>append</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> append <strong>data</strong> to the existing file contents</li>
+<li><strong>fname</strong> (<em>str</em>) – the file to write</li>
+<li><strong>data</strong> (<em>dict</em><em>,</em><em>list</em>) – an object to write to file</li>
+<li><strong>append</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>: append to file; if <code class="docutils literal notranslate"><span class="pre">False</span></code>: overwrite it</li>
 </ul>
 </td>
 </tr>
@@ -279,12 +285,12 @@ If <strong>data</strong> is a list, no header row is added.</p>
 <dl class="function">
 <dt id="utils.makedir">
 <code class="descclassname">utils.</code><code class="descname">makedir</code><span class="sig-paren">(</span><em>directory</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#makedir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.makedir" title="Permalink to this definition">¶</a></dt>
-<dd><p>Just make the damned directory</p>
+<dd><p>Just make the damned directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory</strong> – the directory to make if it does not already exist</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory</strong> (<em>str</em>) – path to a directory to create</td>
 </tr>
 </tbody>
 </table>
@@ -293,12 +299,12 @@ If <strong>data</strong> is a list, no header row is added.</p>
 <dl class="function">
 <dt id="utils.remove">
 <code class="descclassname">utils.</code><code class="descname">remove</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Just remove the damned file or directory</p>
+<dd><p>Just remove the damned file or directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> – a file or directory to remove</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> (<em>str</em>) – a file or directory to remove</td>
 </tr>
 </tbody>
 </table>
@@ -307,18 +313,18 @@ If <strong>data</strong> is a list, no header row is added.</p>
 <dl class="function">
 <dt id="utils.walkfiles">
 <code class="descclassname">utils.</code><code class="descname">walkfiles</code><span class="sig-paren">(</span><em>paths</em>, <em>exts=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#walkfiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.walkfiles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">os.walk()</span></code> for multiple directories and files yielding only files</p>
+<dd><p>Walk one or more directories or files and possibly filter results by file extension.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>paths</strong> – file path, directory path, or list of any combination of those</li>
-<li><strong>exts</strong> – file extension to filter results</li>
+<li><strong>paths</strong> (<em>str</em><em>,</em><em>list</em>) – file path, directory path, or list of any combination of those</li>
+<li><strong>exts</strong> (<em>str</em>) – extension type with which to filter files</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last">full paths to all (matching) files in the specified directories and files</p>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last"><em>(str)</em> – full paths to all (matching) files in the specified directories or files</p>
 </td>
 </tr>
 </tbody>
@@ -328,14 +334,14 @@ If <strong>data</strong> is a list, no header row is added.</p>
 <dl class="function">
 <dt id="utils.unique">
 <code class="descclassname">utils.</code><code class="descname">unique</code><span class="sig-paren">(</span><em>iterobj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#unique"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.unique" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the unique elements of a list of objects</p>
+<dd><p>Return the unique elements of a list of objects.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iterobj</strong> – an iterable object</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>iterobj</strong> (<em>Iterable</em>) – an iterable object</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list containing only the unique elements from <strong>objlist</strong></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><em>(list)</em> – a list containing only the unique elements from <strong>iterobj</strong></td>
 </tr>
 </tbody>
 </table>
@@ -344,20 +350,19 @@ If <strong>data</strong> is a list, no header row is added.</p>
 <dl class="function">
 <dt id="utils.dictmerge">
 <code class="descclassname">utils.</code><code class="descname">dictmerge</code><span class="sig-paren">(</span><em>*dicts</em>, <em>ordered=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#dictmerge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.dictmerge" title="Permalink to this definition">¶</a></dt>
-<dd><p>Merges the provided dictionaries</p>
-<p>If a key appears in more than one dictionary in the list,
-the value from the last appearance is used.</p>
+<dd><p>Merge the provided dictionaries.</p>
+<p>If a key appears in more than one dictionary, the value from the last appearance is used.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dicts</strong> – multiple dictionary objects</li>
-<li><strong>ordered</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> return an <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> else a classic dictionary</li>
+<li><strong>*dicts</strong> (<em>Iterable</em><em>[</em><em>dict</em><em>]</em>) – multiple dictionary objects</li>
+<li><strong>ordered</strong> (<em>bool</em>) – return the dictionary as: <code class="docutils literal notranslate"><span class="pre">True</span></code> = OrderedDict; <code class="docutils literal notranslate"><span class="pre">False</span></code> = dict</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A single (possibly ordered) dictionary containing all key-value pairs from the input dicts</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><em>(dict)</em> – A single (ordered) dictionary containing all key-value pairs from the input dictionaries</p>
 </td>
 </tr>
 </tbody>
@@ -367,15 +372,15 @@ the value from the last appearance is used.</p>
 <dl class="function">
 <dt id="utils.flatten">
 <code class="descclassname">utils.</code><code class="descname">flatten</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utils.flatten" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures that x is a single list containing no nested lists.</p>
+<dd><p>Ensures that <strong>obj</strong> is a single list containing no nested lists.</p>
 <p>Similar to <code class="docutils literal notranslate"><span class="pre">np.ndarray.flatten</span></code>, except for lists which may contain heterogeneous data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> – a single value or list of lists or list of list of lists …</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>object</em>) – a single object or list of lists or list of list of lists …</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list containing all elements of x in the order they appear</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><em>(list)</em> – a list containing all (nested) elements of <strong>obj</strong> in the order they appear</td>
 </tr>
 </tbody>
 </table>
