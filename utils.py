@@ -2,6 +2,7 @@ r"""Utility functions
 """
 
 import os
+import shutil
 import csv
 from collections import OrderedDict as odict
 import simplejson as json
@@ -61,7 +62,7 @@ def savejson(fname,data,append=False,indent=None,**kwargs):
     json.dump(fdata,f,ignore_nan=True,indent=indent,**kwargs)
 
 def loadtxt(fname,dtype=None):
-  r"""Load a text file.
+  r"""Load a short text file.
 
   Args:
     fname (str): the file to load
@@ -152,7 +153,7 @@ def makedir(directory):
     pass
 
 def remove(fname):
-  r"""Just remove the damned file or directory.
+  r"""Just remove the damned file or directory, unless it is a non-empty directory
 
   Args:
     fname (str): a file or directory to remove
@@ -161,7 +162,7 @@ def remove(fname):
     os.remove(fname)
   except:
     try:
-      os.rmdir(fname)
+      shutil.rmtree(fname)
     except:
       pass
 
