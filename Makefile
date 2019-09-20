@@ -8,7 +8,11 @@ help:
 .PHONY: tests
 tests:
 	bash ci/pylint/get-badge.sh
-	pytest --cov=ndna/ tests/
+	pytest --cov-report term-missing --cov=ndna/ tests/
+
+.PHONY: test
+test:
+	pytest -sq tests/
 
 .PHONY: docs
 docs:
