@@ -10,9 +10,13 @@ tests:
 	bash ci/pylint/get-badge.sh
 	pytest --cov=ndna/ tests/
 
-.PHONY: test
-test:
-	pytest -sq --cov-report term-missing --cov=ndna/ tests/
+.PHONY: debug
+debug:
+	pytest -sqq tests/
+
+.PHONY: cov
+cov:
+	pytest -qq --cov-report term-missing --cov=ndna/ tests/
 
 .PHONY: docs
 docs:
