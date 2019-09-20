@@ -3,7 +3,7 @@ language: python
 python:
   - "3.6"
 install:
-  - pip install -r ci/python/requirements.txt
+  - pip install -r requirements.txt
 script:
   - bash ci/pylint/get-badge.sh
   - pytest --cov=ndna/ tests/
