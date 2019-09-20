@@ -4,6 +4,16 @@ from itertools import product
 import numpy as np
 from . import utils
 
+def broadcast_keys(fun):
+  def decorator(arr1,arr2,**kwargs):
+    result = fun(arr1,arr2,**kwargs)
+    try:
+      result.keys = utils.unique(arr1.keys+arr2.keys)
+    except:
+       pass
+    return result
+  return decorator
+
 class Dimension():
   def __init__(self,name,key,values):
     self.name   = name
@@ -105,7 +115,7 @@ class Array(np.ndarray):
     shape = space.subshape(keys)
     obj = np.asanyarray(arr).view(cls)
     if obj.size == 1:
-      obj = obj * np.ones(shape)
+      obj = np.multiply(obj, np.ones(shape))
     elif obj.shape != shape:
       try:
         obj = obj.reshape(shape)
@@ -118,10 +128,27 @@ class Array(np.ndarray):
     return obj
 
   def __array_finalize__(self,obj):
-    # if obj is None:
-    #   return
     self.space = getattr(obj,'space',None)
     self.keys  = getattr(obj,'keys',None)
+
+  @broadcast_keys
+  def __add__(self,arr):
+    return super(Array,self).__add__(arr)
+
+  @broadcast_keys
+  def __sub__(self,arr):
+    return super(Array,self).__sub__(arr)
+
+  @broadcast_keys
+  def __mul__(self,arr):
+    return super(Array,self).__mul__(arr)
+
+  @broadcast_keys
+  def __truediv__(self,arr):
+    return super(Array,self).__truediv__(arr)
+
+  # def __array_ufunc__(self,ufunc,method,*args,**kwargs):
+  #   return super(Array,self).__array_ufunc__(ufunc,method,*args,**kwargs)
 
   def coords(self):
     def fmt(key,value):
