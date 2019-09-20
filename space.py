@@ -2,6 +2,7 @@ r"""Core classes of the NDNA package: Dimension, Space, and Array
 """
 from itertools import product
 import numpy as np
+from . import utils
 
 class Dimension():
   def __init__(self,name,key,values):
@@ -30,7 +31,7 @@ class Space():
     self.keys  = tuple(dim.key for dim in dims)
 
   def __str__(self):
-    return '< Space [{}] >'.format(
+    return '< Space [\n  {}] >'.format(
       '\n  '.join(repr(dim) for dim in self.dims),
     )
 
@@ -40,15 +41,20 @@ class Space():
     )
 
   def index(self,key):
-    return self.keys.index(key)
+    try:
+      return self.keys.index(key)
+    except ValueError:
+      raise ValueError('key \'{}\' not in space.keys'.format(key))
 
   def dim(self,key):
     return self.dims[self.index(key)]
 
   def keyfilter(self,objs,keys):
+    assert len(objs) == self.ndim, 'len(objs) must equal space.ndim'
     return [item for item,key in zip(objs,self.keys) if key in keys]
 
   def keysub(self,objs,sub,keys):
+    assert len(objs) == self.ndim, 'len(objs) must equal space.ndim'
     return [item if key in keys else sub for item,key in zip(objs,self.keys)]
 
   def iter(self,keys=None):
@@ -70,23 +76,37 @@ class Space():
     return tuple(self.keysub(self.shape,1,keys))
 
   def slicer(self,keys=None,**kwargs):
-    slicer = [None]*self.ndim
-    for i,key in enumerate(self.keys):
-      if key in kwargs:
-        slicer[i] = [self.dims[i].values.index(v) for v in kwargs[key]]
-      elif (keys is None) or (key in keys):
-        slicer[i] = range(0,self.shape[i])
-      else:
-        slicer[i] = [0]
-    return np.ix_(*slicer)
+    # TODO: assert all kwargs in self.keys
+    slicer = []
+    if bool(kwargs) and max(map(utils.olen,kwargs.values())) > 1:
+      # selecting multiple indexes in at least one dimension: slow method
+      for i,key in enumerate(self.keys):
+        if key in kwargs:
+          slicer.append([self.dims[i].values.index(v) for v in kwargs[key]])
+        elif (keys is None) or (key in keys):
+          slicer.append(range(0,self.shape[i]))
+        else:
+          slicer.append([0])
+      return np.ix_(*slicer)
+    else:
+      # selecting no more than one index per dimension: fast method
+      for i,key in enumerate(self.keys):
+        if key in kwargs:
+          slicer.extend((None,self.dims[i].values.index(kwargs[key])))
+          # TODO: what if kwargs[key] is a list with len = 1
+        else:
+          slicer.append(slice(None))
+      return tuple(slicer)
 
 class Array(np.ndarray):
   def __new__(cls,arr,space,keys):
-    if issubclass(type(arr),cls):
-      cls = type(arr)
+    # if issubclass(type(arr),cls):
+    #   cls = type(arr)
     shape = space.subshape(keys)
     obj = np.asanyarray(arr).view(cls)
-    if obj.shape != shape:
+    if obj.size == 1:
+      obj = obj * np.ones(shape)
+    elif obj.shape != shape:
       try:
         obj = obj.reshape(shape)
       except:
@@ -98,8 +118,8 @@ class Array(np.ndarray):
     return obj
 
   def __array_finalize__(self,obj):
-    if obj is None:
-      return
+    # if obj is None:
+    #   return
     self.space = getattr(obj,'space',None)
     self.keys  = getattr(obj,'keys',None)
 
@@ -118,8 +138,8 @@ class Array(np.ndarray):
       arr = np.array(arr)
     if select:
       slicer = self.space.slicer(self.keys,**select)
-      shape  = tuple(map(len,slicer))
+      shape = self[slicer].shape
       self[slicer] = arr.reshape(shape)
     else:
-      np.copyto(self,arr)
+      np.copyto(self,arr.reshape(self.shape))
     return self
