@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>space &mdash; NDNA Documentation</title>
+  <title>ndna.space &mdash; NDNA Documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   
   
   
@@ -26,14 +26,14 @@
 
   
 
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 
   
-  <script src="../_static/js/modernizr.min.js"></script>
+  <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -49,12 +49,12 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> ndna
+            <a href="../../index.html" class="icon icon-home"> ndna
           
 
           
             
-            <img src="../_static/favicon.ico" class="logo" alt="Logo"/>
+            <img src="../../_static/favicon.ico" class="logo" alt="Logo"/>
           
           </a>
 
@@ -69,7 +69,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -87,7 +87,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">ndna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ndna.space.html">ndna.space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ndna.utils.html">ndna.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ndna.io.html">ndna.io</a></li>
 </ul>
 
             
@@ -102,7 +104,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">ndna</a>
+          <a href="../../index.html">ndna</a>
         
       </nav>
 
@@ -131,11 +133,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>space</li>
+      <li>ndna.space</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -150,13 +152,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for space</h1><div class="highlight"><pre>
+  <h1>Source code for ndna.space</h1><div class="highlight"><pre>
 <span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Core classes of the NDNA package: Dimension, Space, and Array</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">utils</span>
 
-<div class="viewcode-block" id="Dimension"><a class="viewcode-back" href="../space.html#space.Dimension">[docs]</a><span class="k">class</span> <span class="nc">Dimension</span><span class="p">():</span>
+<div class="viewcode-block" id="broadcast_keys"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.broadcast_keys">[docs]</a><span class="k">def</span> <span class="nf">broadcast_keys</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span><span class="n">arr2</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span><span class="n">arr2</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="n">result</span><span class="o">.</span><span class="n">keys</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">arr1</span><span class="o">.</span><span class="n">keys</span><span class="o">+</span><span class="n">arr2</span><span class="o">.</span><span class="n">keys</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+       <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">result</span>
+  <span class="k">return</span> <span class="n">decorator</span></div>
+
+<div class="viewcode-block" id="Dimension"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Dimension">[docs]</a><span class="k">class</span> <span class="nc">Dimension</span><span class="p">():</span>
   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">values</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">name</span>   <span class="o">=</span> <span class="n">name</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">key</span>    <span class="o">=</span> <span class="n">key</span>
@@ -175,7 +188,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
     <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Space"><a class="viewcode-back" href="../space.html#space.Space">[docs]</a><span class="k">class</span> <span class="nc">Space</span><span class="p">():</span>
+<div class="viewcode-block" id="Space"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space">[docs]</a><span class="k">class</span> <span class="nc">Space</span><span class="p">():</span>
   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dims</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dims</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
@@ -183,7 +196,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">keys</span>  <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">dim</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;&lt; Space [</span><span class="si">{}</span><span class="s1">] &gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="k">return</span> <span class="s1">&#39;&lt; Space [</span><span class="se">\n</span><span class="s1">  </span><span class="si">{}</span><span class="s1">] &gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
       <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">),</span>
     <span class="p">)</span>
 
@@ -192,25 +205,30 @@
       <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">),</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="Space.index"><a class="viewcode-back" href="../space.html#space.Space.index">[docs]</a>  <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Space.index"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.index">[docs]</a>  <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;key </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> not in space.keys&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Space.dim"><a class="viewcode-back" href="../space.html#space.Space.dim">[docs]</a>  <span class="k">def</span> <span class="nf">dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.dim"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.dim">[docs]</a>  <span class="k">def</span> <span class="nf">dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="Space.keyfilter"><a class="viewcode-back" href="../space.html#space.Space.keyfilter">[docs]</a>  <span class="k">def</span> <span class="nf">keyfilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objs</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.keyfilter"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.keyfilter">[docs]</a>  <span class="k">def</span> <span class="nf">keyfilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objs</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="s1">&#39;len(objs) must equal space.ndim&#39;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">)</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Space.keysub"><a class="viewcode-back" href="../space.html#space.Space.keysub">[docs]</a>  <span class="k">def</span> <span class="nf">keysub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objs</span><span class="p">,</span><span class="n">sub</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.keysub"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.keysub">[docs]</a>  <span class="k">def</span> <span class="nf">keysub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objs</span><span class="p">,</span><span class="n">sub</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="s1">&#39;len(objs) must equal space.ndim&#39;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">else</span> <span class="n">sub</span> <span class="k">for</span> <span class="n">item</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="Space.iter"><a class="viewcode-back" href="../space.html#space.Space.iter">[docs]</a>  <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.iter"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.iter">[docs]</a>  <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">sdims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyfilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span><span class="n">keys</span><span class="p">)</span>
     <span class="n">skeys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyfilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">,</span><span class="n">keys</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">dim</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">sdims</span><span class="p">]):</span>
       <span class="k">yield</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">skeys</span><span class="p">,</span><span class="n">values</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Space.coords"><a class="viewcode-back" href="../space.html#space.Space.coords">[docs]</a>  <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.coords"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.coords">[docs]</a>  <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">sdims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyfilter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span><span class="n">keys</span><span class="p">)</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">subshape</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
     <span class="n">lens</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)),</span><span class="n">dim</span><span class="o">.</span><span class="n">values</span><span class="p">)),</span><span class="n">sdims</span><span class="p">))</span>
@@ -219,27 +237,41 @@
       <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dim</span><span class="p">:</span> <span class="n">dim</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">sdims</span><span class="p">))</span>
     <span class="p">],</span><span class="n">shape</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Space.subshape"><a class="viewcode-back" href="../space.html#space.Space.subshape">[docs]</a>  <span class="k">def</span> <span class="nf">subshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
+<div class="viewcode-block" id="Space.subshape"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.subshape">[docs]</a>  <span class="k">def</span> <span class="nf">subshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keysub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">keys</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Space.slicer"><a class="viewcode-back" href="../space.html#space.Space.slicer">[docs]</a>  <span class="k">def</span> <span class="nf">slicer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">slicer</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">slicer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span>
-      <span class="k">elif</span> <span class="p">(</span><span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">):</span>
-        <span class="n">slicer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="n">slicer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="o">*</span><span class="n">slicer</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="Space.slicer"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Space.slicer">[docs]</a>  <span class="k">def</span> <span class="nf">slicer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># TODO: assert all kwargs in self.keys</span>
+    <span class="n">slicer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">olen</span><span class="p">,</span><span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="c1"># selecting multiple indexes in at least one dimension: slow method</span>
+      <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+          <span class="n">slicer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]])</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">):</span>
+          <span class="n">slicer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">slicer</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="o">*</span><span class="n">slicer</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># selecting no more than one index per dimension: fast method</span>
+      <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+          <span class="n">slicer</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])))</span>
+          <span class="c1"># TODO: what if kwargs[key] is a list with len = 1</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">slicer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+      <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">slicer</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="Array"><a class="viewcode-back" href="../space.html#space.Array">[docs]</a><span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<div class="viewcode-block" id="Array"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Array">[docs]</a><span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
   <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">arr</span><span class="p">,</span><span class="n">space</span><span class="p">,</span><span class="n">keys</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span><span class="bp">cls</span><span class="p">):</span>
-      <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="c1"># if issubclass(type(arr),cls):</span>
+    <span class="c1">#   cls = type(arr)</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">subshape</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
     <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">shape</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">shape</span><span class="p">:</span>
       <span class="k">try</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
       <span class="k">except</span><span class="p">:</span>
@@ -251,30 +283,47 @@
     <span class="k">return</span> <span class="n">obj</span>
 
   <span class="k">def</span> <span class="nf">__array_finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="k">return</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s1">&#39;space&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">keys</span>  <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Array.coords"><a class="viewcode-back" href="../space.html#space.Array.coords">[docs]</a>  <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="nd">@broadcast_keys</span>
+  <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+  <span class="nd">@broadcast_keys</span>
+  <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__sub__</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+  <span class="nd">@broadcast_keys</span>
+  <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+  <span class="nd">@broadcast_keys</span>
+  <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__truediv__</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+  <span class="c1"># def __array_ufunc__(self,ufunc,method,*args,**kwargs):</span>
+  <span class="c1">#   return super(Array,self).__array_ufunc__(ufunc,method,*args,**kwargs)</span>
+
+<div class="viewcode-block" id="Array.coords"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Array.coords">[docs]</a>  <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">fmt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
       <span class="k">return</span> <span class="n">key</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;: </span><span class="si">{:9f}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="c1"># TODO: clean up this assumed :9f</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span>
       <span class="n">fmt</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">coords</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
     <span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Array.slice"><a class="viewcode-back" href="../space.html#space.Array.slice">[docs]</a>  <span class="k">def</span> <span class="nf">slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.slice"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Array.slice">[docs]</a>  <span class="k">def</span> <span class="nf">slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">slicer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="Array.update"><a class="viewcode-back" href="../space.html#space.Array.update">[docs]</a>  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.update"><a class="viewcode-back" href="../../ndna.space.html#ndna.space.Array.update">[docs]</a>  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
       <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">select</span><span class="p">:</span>
       <span class="n">slicer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">slicer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">,</span><span class="o">**</span><span class="n">select</span><span class="p">)</span>
-      <span class="n">shape</span>  <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span><span class="n">slicer</span><span class="p">))</span>
+      <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
       <span class="bp">self</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="n">np</span><span class="o">.</span><span class="n">copyto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">copyto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
     <span class="k">return</span> <span class="bp">self</span></div></div>
 </pre></div>
 
@@ -289,7 +338,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 
-      Last updated on 2019 Jul 21.
+      Last updated on 2019 Sep 22.
 
     </p>
   </div>
@@ -310,16 +359,16 @@
 
     
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
     
 
   
 
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

@@ -3,6 +3,9 @@
 .PHONY: help
 help:
 	@echo "Please use \`make <target>\` where <target> is one of"
+	@echo "  tests      to run all tests and coverage"
+	@echo "  debug      to run just tests and print output"
+	@echo "  cov        to run just coverage report"
 	@echo "  docs       to build the docs"
 
 .PHONY: tests
@@ -20,6 +23,6 @@ cov:
 
 .PHONY: docs
 docs:
-	# rm -rf docs/html*
-	sphinx-apidoc -f -e -o docs/src ndna
+	rm -rf docs/html*
+	sphinx-apidoc -feT ndna/ -o docs/src --templatedir docs/src/_templates
 	sphinx-build -b html docs/src docs/html

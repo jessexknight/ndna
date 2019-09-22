@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath('../../ndna/'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 # -- General configuration ------------------------------------------------
 
@@ -15,7 +15,7 @@ extensions = [
 ]
 
 templates_path = ['templates']
-# exclude_patterns = ['modules.rst']
+exclude_patterns = ['modules.rst']
 
 source_suffix = '.rst'
 source_encoding = 'utf-8-sig'
