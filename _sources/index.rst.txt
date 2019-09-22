@@ -10,12 +10,13 @@ Contents
 .. toctree::
    :maxdepth: 1
 
-   modules
+   ndna.space
+   ndna.utils
+   ndna.io
 
 
 Index
 =====
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

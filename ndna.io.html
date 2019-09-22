@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ndna &mdash; NDNA Documentation</title>
+  <title>ndna.io &mdash; NDNA Documentation</title>
   
 
   
@@ -31,8 +31,7 @@
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="space module" href="space.html" />
-    <link rel="prev" title="NDNA: N-Dimensional Named Arrays" href="index.html" /> 
+    <link rel="prev" title="ndna.utils" href="ndna.utils.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -89,11 +88,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ndna</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="space.html">space module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="ndna.space.html">ndna.space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndna.utils.html">ndna.utils</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ndna.io</a></li>
 </ul>
 
             
@@ -139,7 +136,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>ndna</li>
+      <li>ndna.io</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,14 +153,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ndna">
-<h1>ndna<a class="headerlink" href="#ndna" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="space.html">space module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils module</a></li>
+  <div class="section" id="module-ndna.io">
+<span id="ndna-io"></span><h1>ndna.io<a class="headerlink" href="#module-ndna.io" title="Permalink to this headline">¶</a></h1>
+<p>I/O functions</p>
+<dl class="function">
+<dt id="ndna.io.loadjson">
+<code class="sig-prename descclassname">ndna.io.</code><code class="sig-name descname">loadjson</code><span class="sig-paren">(</span><em class="sig-param">fname</em>, <em class="sig-param">ordered=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/io.html#loadjson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.io.loadjson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – the file to load</p></li>
+<li><p><strong>ordered</strong> (<em>bool</em>) – return dictionaries as: <code class="docutils literal notranslate"><span class="pre">True</span></code> = OrderedDict; <code class="docutils literal notranslate"><span class="pre">False</span></code> = dict</p></li>
 </ul>
-</div>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>(dict,list)</em> – the contents as a dict / list object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ndna.io.makedir">
+<code class="sig-prename descclassname">ndna.io.</code><code class="sig-name descname">makedir</code><span class="sig-paren">(</span><em class="sig-param">directory</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/io.html#makedir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.io.makedir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just make the damned directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – path to a directory to create</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -174,10 +194,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="space.html" class="btn btn-neutral float-right" title="space module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="NDNA: N-Dimensional Named Arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ndna.utils.html" class="btn btn-neutral" title="ndna.utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -187,7 +205,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 
-      Last updated on 2019 Jul 21.
+      Last updated on 2019 Sep 22.
 
     </p>
   </div>
@@ -212,7 +230,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   
