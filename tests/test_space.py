@@ -9,6 +9,7 @@ def test_dimension():
   with pytest.raises(TypeError,match='is not iterable'):
     Dimension('a','a',None)
     Dimension('a','a',0)
+  # TODO: test each attribute
   # Dimension.__str__
   assert str(data.dims['sex']) == '< Dimension "sex" (k): [male,female] >'
   # Dimension.__repr__
@@ -20,18 +21,19 @@ def test_space():
     Space(0)
   with pytest.raises(TypeError,match='required positional argument'):
     Space()
+  # TODO: test each attribute
+  # Space.index
+  with pytest.raises(KeyError):
+    data.space.index[0]
+  assert data.space.index['j'] == 1
+  # Space.dim
+  with pytest.raises(KeyError):
+    data.space.dim[0]
+  assert data.space.dim['j'] == data.dims['age']
   # Space.__str__
   assert str(data.space) == '< Space [\n  activity (i)\n  age (j)\n  sex (k)] >'
   # Space.__repr__
   assert repr(data.space) == '< Space [i, j, k] >'
-  # Space.index
-  with pytest.raises(ValueError,match='key .* not in space.keys'):
-    data.space.index(0)
-  assert data.space.index('j') == 1
-  # Space.dim
-  with pytest.raises(ValueError,match='key .* not in space.keys'):
-    data.space.dim(0)
-  assert data.space.dim('j') == data.dims['age']
   # Space.keyfilter
   assert data.space.keyfilter([1,2,3],[]) == []
   assert data.space.keyfilter([1,2,3],['j']) == [2]

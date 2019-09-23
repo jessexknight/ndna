@@ -10,7 +10,7 @@ def broadcast_keys(fun):
     try:
       result.keys = utils.unique(arr1.keys+arr2.keys)
     except:
-       pass
+      pass
     return result
   return decorator
 
@@ -39,6 +39,8 @@ class Space():
     self.ndim  = len(dims)
     self.shape = tuple(len(dim.values) for dim in dims)
     self.keys  = tuple(dim.key for dim in dims)
+    self.index = {dim.key:i for i,dim in enumerate(dims)}
+    self.dim   = {dim.key:dim for dim in dims}
 
   def __str__(self):
     return '< Space [\n  {}] >'.format(
@@ -49,15 +51,6 @@ class Space():
     return '< Space [{}] >'.format(
       ', '.join(str(key) for key in self.keys),
     )
-
-  def index(self,key):
-    try:
-      return self.keys.index(key)
-    except ValueError:
-      raise ValueError('key \'{}\' not in space.keys'.format(key))
-
-  def dim(self,key):
-    return self.dims[self.index(key)]
 
   def keyfilter(self,objs,keys):
     assert len(objs) == self.ndim, 'len(objs) must equal space.ndim'
