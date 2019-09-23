@@ -6,6 +6,7 @@ help:
 	@echo "  tests      to run all tests and coverage"
 	@echo "  debug      to run just tests and print output"
 	@echo "  cov        to run just coverage report"
+	@echo "  lint       to run just lint report"
 	@echo "  docs       to build the docs"
 
 .PHONY: tests
@@ -20,6 +21,10 @@ debug:
 .PHONY: cov
 cov:
 	pytest -qq --cov-report term-missing --cov=ndna/ tests/
+
+.PHONY: lint
+lint:
+	pylint --rcfile=ci/pylint/.pylintrc ndna/ | tail -n2
 
 .PHONY: docs
 docs:
