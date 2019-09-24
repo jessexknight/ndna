@@ -2,7 +2,9 @@ r"""Core classes of the NDNA package: Dimension, Space, and Array
 """
 from itertools import product
 import numpy as np
-from . import utils
+from ndna import utils
+
+# TODO: decorator & framework for dimension slicing
 
 def broadcast_keys(fun):
   def decorator(arr1,arr2,**kwargs):
@@ -33,6 +35,9 @@ class Dimension():
       self.key,
     )
 
+  def __len__(self):
+    return len(self.values)
+
 class Space():
   def __init__(self,dims):
     self.dims  = list(dims)
@@ -51,6 +56,9 @@ class Space():
     return '< Space [{}] >'.format(
       ', '.join(str(key) for key in self.keys),
     )
+
+  def __len__(self):
+    return self.ndim
 
   def keyfilter(self,objs,keys):
     assert len(objs) == self.ndim, 'len(objs) must equal space.ndim'
@@ -85,7 +93,7 @@ class Space():
       # selecting multiple indexes in at least one dimension: slow method
       for i,key in enumerate(self.keys):
         if key in kwargs:
-          slicer.append([self.dims[i].values.index(v) for v in kwargs[key]])
+          slicer.append([self.dims[i].values.index(v) for v in utils.flatten(kwargs[key])])
         elif (keys is None) or (key in keys):
           slicer.append(range(0,self.shape[i]))
         else:
@@ -139,6 +147,14 @@ class Array(np.ndarray):
   @broadcast_keys
   def __truediv__(self,arr):
     return super(Array,self).__truediv__(arr)
+
+  def __getitem__(self,key):
+    if isinstance(key,dict):
+      return self(**key)
+    return super(Array,self).__getitem__(key)
+
+  def __call__(self,**kwargs):
+    return self[self.space.slicer(self.keys,**kwargs)]
 
   # def __array_ufunc__(self,ufunc,method,*args,**kwargs):
   #   return super(Array,self).__array_ufunc__(ufunc,method,*args,**kwargs)
