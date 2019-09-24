@@ -7,6 +7,7 @@ Submodules
 .. toctree::
 
    ndna.io
+   ndna.ops
    ndna.space
    ndna.utils
 

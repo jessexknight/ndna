@@ -66,5 +66,6 @@ html_search_options = {'type': 'default'}
 
 def setup(app):
   app.add_stylesheet('css/custom.css')
+  app.add_stylesheet('css/rtd-dark.css')
 
 # -- Python functions -----------------------------------------------------
