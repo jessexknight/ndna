@@ -11,6 +11,7 @@ Contents
    :maxdepth: 1
 
    ndna.space
+   ndna.ops
    ndna.utils
    ndna.io
 

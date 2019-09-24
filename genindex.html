@@ -20,33 +20,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd-dark.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -89,6 +92,7 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="ndna.space.html">ndna.space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndna.ops.html">ndna.ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.utils.html">ndna.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.io.html">ndna.io</a></li>
 </ul>
@@ -168,6 +172,7 @@
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
+ | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#U"><strong>U</strong></a>
  
@@ -207,8 +212,6 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ndna.space.html#ndna.space.Space.dim">dim() (ndna.space.Space method)</a>
-</li>
       <li><a href="ndna.space.html#ndna.space.Dimension">Dimension (class in ndna.space)</a>
 </li>
   </ul></td>
@@ -224,10 +227,6 @@
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ndna.space.html#ndna.space.Space.index">index() (ndna.space.Space method)</a>
-</li>
-  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ndna.space.html#ndna.space.Space.iter">iter() (ndna.space.Space method)</a>
 </li>
@@ -260,6 +259,10 @@
       <li><a href="ndna.io.html#ndna.io.makedir">makedir() (in module ndna.io)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ndna.ops.html#ndna.ops.Selector.merge">merge() (ndna.ops.Selector method)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
@@ -271,6 +274,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ndna.ops.html#module-ndna.ops">ndna.ops (module)</a>
+</li>
       <li><a href="ndna.space.html#module-ndna.space">ndna.space (module)</a>
 </li>
       <li><a href="ndna.utils.html#module-ndna.utils">ndna.utils (module)</a>
@@ -286,15 +291,25 @@
   </ul></td>
 </tr></table>
 
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ndna.ops.html#ndna.ops.Selector.register">register() (ndna.ops.Selector method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ndna.space.html#ndna.space.Array.slice">slice() (ndna.space.Array method)</a>
+      <li><a href="ndna.ops.html#ndna.ops.Selector">Selector (class in ndna.ops)</a>
 </li>
-      <li><a href="ndna.space.html#ndna.space.Space.slicer">slicer() (ndna.space.Space method)</a>
+      <li><a href="ndna.space.html#ndna.space.Array.slice">slice() (ndna.space.Array method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ndna.space.html#ndna.space.Space.slicer">slicer() (ndna.space.Space method)</a>
+</li>
       <li><a href="ndna.space.html#ndna.space.Space">Space (class in ndna.space)</a>
 </li>
       <li><a href="ndna.space.html#ndna.space.Space.subshape">subshape() (ndna.space.Space method)</a>
@@ -327,7 +342,9 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 
-      Last updated on 2019 Sep 22.
+      <span class="lastupdated">
+        Last updated on 2019 Sep 24.
+      </span>
 
     </p>
   </div>
@@ -344,26 +361,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

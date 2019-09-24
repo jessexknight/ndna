@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NDNA: N-Dimensional Named Arrays &mdash; NDNA Documentation</title>
+  <title>ndna.ops &mdash; NDNA Documentation</title>
   
 
   
@@ -39,7 +39,8 @@
   <link rel="stylesheet" href="_static/css/rtd-dark.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ndna.space" href="ndna.space.html" /> 
+    <link rel="next" title="ndna.utils" href="ndna.utils.html" />
+    <link rel="prev" title="ndna.space" href="ndna.space.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -53,7 +54,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> ndna
+            <a href="index.html" class="icon icon-home"> ndna
           
 
           
@@ -90,9 +91,9 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ndna.space.html">ndna.space</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndna.ops.html">ndna.ops</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ndna.ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.utils.html">ndna.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.io.html">ndna.io</a></li>
 </ul>
@@ -109,7 +110,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">ndna</a>
+          <a href="index.html">ndna</a>
         
       </nav>
 
@@ -138,9 +139,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>NDNA: N-Dimensional Named Arrays</li>
+      <li>ndna.ops</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,28 +158,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ndna-n-dimensional-named-arrays">
-<h1>NDNA: N-Dimensional Named Arrays<a class="headerlink" href="#ndna-n-dimensional-named-arrays" title="Permalink to this headline">¶</a></h1>
-<img alt="https://travis-ci.com/jessexknight/ndna.svg?branch=master" src="https://travis-ci.com/jessexknight/ndna.svg?branch=master" />
-<img alt="https://codecov.io/gh/jessexknight/ndna/branch/master/graph/badge.svg?" src="https://codecov.io/gh/jessexknight/ndna/branch/master/graph/badge.svg?" />
-<img alt="_images/pylint-badge.svg" src="_images/pylint-badge.svg" /></div>
-<div class="section" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ndna.space.html">ndna.space</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndna.ops.html">ndna.ops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndna.utils.html">ndna.utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndna.io.html">ndna.io</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="index">
-<h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+  <div class="section" id="module-ndna.ops">
+<span id="ndna-ops"></span><h1>ndna.ops<a class="headerlink" href="#module-ndna.ops" title="Permalink to this headline">¶</a></h1>
+<p>Operator classes: Selector</p>
+<dl class="class">
+<dt id="ndna.ops.Selector">
+<em class="property">class </em><code class="sig-prename descclassname">ndna.ops.</code><code class="sig-name descname">Selector</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">space</em>, <em class="sig-param">memory=True</em>, <em class="sig-param">**select</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/ops.html#Selector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.ops.Selector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dl class="method">
+<dt id="ndna.ops.Selector.register">
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/ops.html#Selector.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.ops.Selector.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ndna.ops.Selector.merge">
+<code class="sig-name descname">merge</code><span class="sig-paren">(</span><em class="sig-param">selector</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/ops.html#Selector.merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.ops.Selector.merge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -189,8 +187,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ndna.space.html" class="btn btn-neutral float-right" title="ndna.space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ndna.utils.html" class="btn btn-neutral float-right" title="ndna.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="ndna.space.html" class="btn btn-neutral float-left" title="ndna.space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

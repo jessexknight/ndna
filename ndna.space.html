@@ -19,35 +19,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd-dark.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ndna.utils" href="ndna.utils.html" />
+    <link rel="next" title="ndna.ops" href="ndna.ops.html" />
     <link rel="prev" title="NDNA: N-Dimensional Named Arrays" href="index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -90,6 +93,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ndna.space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndna.ops.html">ndna.ops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.utils.html">ndna.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndna.io.html">ndna.io</a></li>
 </ul>
@@ -173,16 +177,6 @@
 <em class="property">class </em><code class="sig-prename descclassname">ndna.space.</code><code class="sig-name descname">Space</code><span class="sig-paren">(</span><em class="sig-param">dims</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/space.html#Space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.space.Space" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
-<dt id="ndna.space.Space.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/space.html#Space.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.space.Space.index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="ndna.space.Space.dim">
-<code class="sig-name descname">dim</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/space.html#Space.dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.space.Space.dim" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="ndna.space.Space.keyfilter">
 <code class="sig-name descname">keyfilter</code><span class="sig-paren">(</span><em class="sig-param">objs</em>, <em class="sig-param">keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ndna/space.html#Space.keyfilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ndna.space.Space.keyfilter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -245,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ndna.utils.html" class="btn btn-neutral float-right" title="ndna.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ndna.ops.html" class="btn btn-neutral float-right" title="ndna.ops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="NDNA: N-Dimensional Named Arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="NDNA: N-Dimensional Named Arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -258,7 +252,9 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 
-      Last updated on 2019 Sep 22.
+      <span class="lastupdated">
+        Last updated on 2019 Sep 24.
+      </span>
 
     </p>
   </div>
@@ -275,26 +271,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
