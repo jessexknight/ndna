@@ -160,10 +160,17 @@ class Array(np.ndarray):
   #   return super(Array,self).__array_ufunc__(ufunc,method,*args,**kwargs)
 
   def coords(self):
-    def fmt(key,value):
-      return key+(': {:9f}').format(value) # TODO: clean up this assumed :9f
+    strfun = lambda x: str(float(x))
+    prefun = lambda s: s.find('.')
+    decfun = lambda s: len(s)-s.find('.')-1
+    sarr = list(map(strfun,self.flatten()))
+    spre = max(map(prefun,sarr))
+    sdec = max(map(decfun,sarr))
+    fmt  = '{{:{}.{}f}}'.format(spre+1+sdec,sdec)
+    def fmtfun(key,value):
+      return key+': '+fmt.format(value)
     return np.reshape([
-      fmt(k,v) for k,v in zip(self.space.coords(self.keys).flatten(),self.flatten())
+      fmtfun(k,v) for k,v in zip(self.space.coords(self.keys).flatten(),self.flatten())
     ],self.shape)
 
   def slice(self,**select):

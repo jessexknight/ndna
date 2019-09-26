@@ -104,9 +104,9 @@ def test_array():
   assert data.Xijk(i='low',j=70,k='female') == (3*7*2)-1
   assert data.Xijk(i='high').shape == (1,7,2)
   # Array.coords
-  assert data.X.coords() == np.array([[[':  0.000000']]])
-  assert np.all(data.Xk.coords() == np.array([[['male  :  1.000000','female:  2.000000']]]))
-  assert data.Xijk.coords()[0,0,0] == 'high  ,10,male  :  0.000000'
+  assert data.X.coords() == np.array([[[': 0.0']]])
+  assert np.all(data.Xk.coords() == np.array([[['male  : 1.0','female: 2.0']]]))
+  assert data.Xijk.coords()[0,0,0] == 'high  ,10,male  :  0.0'
   # Array.slice
   assert np.all(data.Xijk.slice() == data.Xijk)
   assert data.Xi.slice(i='high') == np.array([[[1]]])
