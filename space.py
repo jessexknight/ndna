@@ -2,7 +2,7 @@ r"""Core classes of the NDNA package: Dimension, Space, and Array
 """
 from itertools import product
 import numpy as np
-from ndna import utils
+from . import utils
 
 # TODO: decorator & framework for dimension slicing
 
