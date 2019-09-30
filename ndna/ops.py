@@ -1,7 +1,7 @@
 r"""Operator classes: Selector
 """
 
-from ndna import utils
+from . import utils
 
 class Selector(dict):
   def __init__(self,name,space,memory=True,**select):
