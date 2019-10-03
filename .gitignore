@@ -9,3 +9,4 @@ __pycache__/
 .tags
 .tmp/
 .debug/
+dist/
